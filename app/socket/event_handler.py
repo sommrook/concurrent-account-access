@@ -1,7 +1,7 @@
 import asyncio
 
-from src.socket.fastapi_consumer import socket_consumer, send_consumer_message
-from src.logger.log_manager import access_logger
+from app.socket.fastapi_consumer import socket_consumer, send_consumer_message
+from app.core.log_manager import access_logger
 
 async def consume():
     asyncio.create_task(send_consumer_message())

@@ -1,7 +1,7 @@
 import logging
 import logging.handlers
 import os
-from src.metadata import LOG_PATH
+from app.core.settings import LOG_PATH
 
 
 class LogManager(object):

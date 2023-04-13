@@ -3,11 +3,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 import socketio
 
-from src.socket.socket_handler import sio
-from src.socket.event_handler import startup_event_app, shutdown_event_app
+from app.socket.socket_handler import sio
+from app.socket.event_handler import startup_event_app, shutdown_event_app
 
 def create_app():
-    app = FastAPI(title="NL42AnnotatorAPI", version="0.1")
+    app = FastAPI(title="ConcurrentAccessAPI", version="0.1")
     app.add_middleware(
         CORSMiddleware,
         allow_origins=["*"],
@@ -23,6 +23,7 @@ def create_app():
             status_code=200
         )
 
+    # async socket app + kafka consumer
     sio_app = socketio.ASGIApp(socketio_server=sio, other_asgi_app=app, socketio_path='/socket/v1/concurrent',
                                on_startup=startup_event_app, on_shutdown=shutdown_event_app)
 

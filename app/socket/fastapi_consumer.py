@@ -3,9 +3,8 @@ import os
 import aiokafka
 import json
 
-from src.metadata import CONSUMER_SOCKET_GROUP, KAFKA_SOCKET_TOPIC, KAFKA_BOOTSTRAP
-from src.socket.socket_handler import sio
-from src.logger.log_manager import access_logger
+from app.core.settings import CONSUMER_SOCKET_GROUP, KAFKA_SOCKET_TOPIC, KAFKA_BOOTSTRAP
+from app.core.log_manager import access_logger
 
 
 async def socket_consumer():
