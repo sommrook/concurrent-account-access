@@ -17,7 +17,7 @@ async def socket_consumer():
     await consumer.start()
 
 def success():
-    access_logger.info("success")
+    access_logger.info("success test")
 
 async def send_consumer_message():
     access_logger.info(f"send consumer message start")
