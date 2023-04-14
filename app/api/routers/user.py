@@ -1,16 +1,19 @@
+import json
+
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import JSONResponse
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 
-from api.schemas import BasicResponse
-from api.schemas.user import *
-from api.services.user_service import UserService
-from db.session import get_db
-from core.status_code import StatusCode
+from app.api.schemas import BasicResponse
+from app.api.schemas.user import *
+from app.api.services.user_service import UserService
+from app.db.session import get_db
+from app.core.status_code import StatusCode
+# from app.core.producer import producer
 
 router = APIRouter(tags=["user"])
-user_service = UserService
+user_service = UserService()
 
 @router.post(path="/login", response_model=LoginResponse)
 async def login_user(login: LoginRequest, request: Request, db: Session = Depends(get_db)):
@@ -112,9 +115,16 @@ async def create_user(request: CreateUserRequest, db: Session = Depends(get_db))
             status_code=400
         )
     return JSONResponse(
-        content=result.dict(),
+        content=StatusCode.CODE2000.response(),
         status_code=200
     )
+
+# @router.post("/socket", response_model=BasicResponse)
+# async def send_socket_info(request: ProduceRequest):
+#     topic = request.topic
+#     data = request.data
+#
+#     producer.produce(topic=topic, data=json.dumps(data))
 
 
 user_router = router

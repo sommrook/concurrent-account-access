@@ -11,7 +11,7 @@ from app.api.schemas.user import *
 from app.core.settings import SECRET_KEY, ALGORITHM
 from app.core.status_code import StatusCode
 
-from app.socket.socket_handler import sio, login_namespace
+from app.my_socket.socket_handler import sio, login_namespace
 
 
 class UserService(object):
@@ -36,7 +36,7 @@ class UserService(object):
     def create_token(self, find_user):
         access_token_expires = timedelta(days=7)
         access_token = self.create_access_token(
-            data={"user_id": find_user.user_uuid.decode(), "user_account": find_user.user_account,
+            data={"user_id": find_user.user_id, "user_account": find_user.user_account,
                   "created_date": self.dateformat(find_user.created_date),
                   "pwd_updated_date": self.dateformat(find_user.pwd_updated_date)}, expires_delta=access_token_expires
         )
@@ -50,7 +50,7 @@ class UserService(object):
         find_user = self.user_repo.find_user_by_account(db, request.user_account)
         if not find_user:
             return "USER_NOT_FOUND"
-        if not bcrypt.checkpw(request.password.encode('utf-8'), find_user.password.encode('utf-8')):
+        if not bcrypt.checkpw(request.password.encode('utf-8'), find_user.user_password.encode('utf-8')):
             return "INVALID_PASSWORD"
         return LoginResponse(
             response_code=StatusCode.CODE2000.code,
@@ -59,6 +59,7 @@ class UserService(object):
             user=UserInfo(
                 user_id=find_user.user_id,
                 user_account=find_user.user_account,
+                user_name=find_user.user_name,
                 email=find_user.email,
                 ip_address=ip_address,
                 created_date=self.dateformat(find_user.created_date) if find_user.created_date else None,
@@ -98,7 +99,7 @@ class UserService(object):
 
         user = User(
             user_account=user_account,
-            password=password,
+            user_password=password,
             user_name=request.user_name,
             email=request.email,
         )

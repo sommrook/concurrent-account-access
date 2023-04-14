@@ -36,11 +36,11 @@ USER = MYSQL_USER
 PASSWORD = MYSQL_PASSWORD
 if IS_CYPER:
     aes = AESCipher(KEY, IV)
-    oracle_user = aes.decrypt(MYSQL_USER)
-    oracle_password = aes.decrypt(MYSQL_PASSWORD)
+    USER = aes.decrypt(MYSQL_USER)
+    PASSWORD = aes.decrypt(MYSQL_PASSWORD)
 
 
-link = f"mysql+mysqldb://{MYSQL_USER}:{MYSQL_PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}:{MYSQL_DATABASE}"
+link = f"mysql+pymysql://{USER}:{PASSWORD}@{MYSQL_HOST}:{MYSQL_PORT}/{MYSQL_DATABASE}"
 engine = create_engine(link, echo=False, pool_pre_ping=True, encoding="utf-8", convert_unicode=False,
                        pool_recycle=3600, pool_size=50, max_overflow=20, max_identifier_length=30)
 Session = sessionmaker(bind=engine, autocommit=False, autoflush=False)

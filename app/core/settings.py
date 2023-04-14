@@ -6,7 +6,7 @@ API_PORT = int(os.environ.get("API_PORT", 8000))
 API_WORKERS = int(os.environ.get("API_WORKERS", 3))
 
 # LOG
-LOG_PATH = "/logs"
+LOG_PATH = "/Users/idasom/study/python/concurrentAccountAccess/logs"
 
 # JWT KEY
 SECRET_KEY = "sksmdmdmsdlekzmfthadlq"
@@ -28,3 +28,5 @@ IS_CYPER = int(os.environ.get("IS_CYPER", 1))
 KAFKA_BOOTSTRAP = os.environ.get("KAFKA_HOST", "localhost:9092")
 KAFKA_SOCKET_TOPIC = os.environ.get("KAFKA_SOCKET_TOPIC", "socket.pub.sub")
 CONSUMER_SOCKET_GROUP = os.environ.get("CONSUMER_SOCKET_GROUP", "socket_group")
+
+LOGIN_NAMESPACE = "access"

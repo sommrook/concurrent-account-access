@@ -16,7 +16,7 @@ class User(Base):
     user_id: int = Column(Integer, primary_key=True, autoincrement=True)
     user_account: str = Column(String(32), unique=True)
     user_name: str = Column(String(128))
-    password: str = Column(String(128))
+    user_password: str = Column(String(128))
     email: str = Column(String(128))
     created_date: datetime = Column(DateTime(timezone=True), default=func.now())
     updated_date: datetime = Column(DateTime(timezone=True), default=func.now(), onupdate=func.now())

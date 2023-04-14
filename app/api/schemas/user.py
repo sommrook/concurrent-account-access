@@ -38,3 +38,8 @@ class CreateUserRequest(BaseModel):
     user_name: str
     password: str
     email: str
+
+
+class ProduceRequest(BaseModel):
+    topic: str
+    data: dict
