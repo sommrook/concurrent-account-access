@@ -5,6 +5,7 @@ import json
 
 from app.core.settings import CONSUMER_SOCKET_GROUP, KAFKA_SOCKET_TOPIC, KAFKA_BOOTSTRAP
 from app.core.log_manager import access_logger
+from app.socket.socket_handler import sio, login_namespace
 
 
 async def socket_consumer():
@@ -21,12 +22,9 @@ async def send_consumer_message():
     try:
         async for msg in consumer:
             value = json.loads(msg.value)
-            # if value.get("path") == SocketPath.ANNOTATOR:
-            #     if value.get("namespace") == AnnoNameSpace.files:
-            #         pass
-            #     elif value.get("namespace") == AnnoNameSpace.upload:
-            #         await sio.emit(event=value.get("event"), data=json.dumps(value.get("data")), namespace=upload_namespace)
-
+            if value.get("namespace") == login_namespace:
+                await sio.emit(event=value.get("event"), data=value.get("data"), namespace=login_namespace,
+                               room=value.get("room"), skip_sid=value.get("skip_sid"))
             await consumer.commit()
     finally:
         access_logger.warning("Stopping consumer")

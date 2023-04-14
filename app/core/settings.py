@@ -8,6 +8,10 @@ API_WORKERS = int(os.environ.get("API_WORKERS", 3))
 # LOG
 LOG_PATH = "/logs"
 
+# JWT KEY
+SECRET_KEY = "sksmdmdmsdlekzmfthadlq"
+ALGORITHM = "HS256"
+
 # DB
 MYSQL_USER = os.environ.get("MYSQL_USER", "rEgT6+Cxrdz4g6U+0uIaJw==")
 MYSQL_PASSWORD = os.environ.get("MYSQL_PASSWORD", "XCOFnUHPrMaUBYKY1t15ag==")
