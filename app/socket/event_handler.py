@@ -12,7 +12,3 @@ async def startup_event_app():
 
 def shutdown_event_app():
     access_logger.info("shutdown socket app")
-    # db = next(get_db())
-    # db.query(SocketFileAccount).delete(synchronize_session='fetch')
-    # db.commit()
-    # db.close()
