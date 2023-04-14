@@ -11,4 +11,4 @@ async def startup_event_app():
     await consume()
 
 def shutdown_event_app():
-    access_logger.info("shutdown socket app")
+    access_logger.info("shutdown socket app~")
