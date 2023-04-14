@@ -12,9 +12,11 @@ CREATE TABLE concurrent_access.auth_user (
 );
 
 CREATE TABLE concurrent_access.account_access (
+    access_id   INT NOT NULL AUTO_INCREMENT,
     user_id   INT,
+    ip_address  VARCHAR(32),
     sid     VARCHAR(32),
-    PRIMARY KEY (user_id),
+    PRIMARY KEY (access_id),
     FOREIGN KEY (user_id) REFERENCES auth_user(user_id) ON DELETE CASCADE
 );
 
