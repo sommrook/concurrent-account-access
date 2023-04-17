@@ -60,8 +60,7 @@ def login_socket_handler():
             "access_id": account_access.access_id
         }
 
-        if ip_list:
-            await sio.emit(event="login-user", data=data, to=sid, namespace=login_namespace, callback=None)
+        await sio.emit(event="login-user", data=data, to=sid, namespace=login_namespace, callback=None)
 
         db.close()
 
