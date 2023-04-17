@@ -1,7 +1,7 @@
 from enum import Enum
 
 class StatusCode(Enum):
-    CODE2000 = "CODE200", "OK"
+    CODE2000 = "CODE2000", "OK"
 
     CODE5000 = "CODE5000", "Internal Server Error"
     CODE5001 = "CODE5001", "DataBase Error"
