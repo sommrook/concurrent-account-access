@@ -78,7 +78,7 @@ def login_socket_handler():
         data = json.loads(data)
         db = next(get_db())
         sio.leave_room(sid, namespace=login_namespace, room=data["user_account"])
-        UserRepository.delete_user_by_sid_user_id(db, sid, data["user_id"])
+        UserRepository.delete_user_by_access_id(db, data["access_id"])
         db.close()
 
 
