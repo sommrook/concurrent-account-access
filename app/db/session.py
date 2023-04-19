@@ -8,7 +8,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad, pad
 
-from core.settings import MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_PORT, MYSQL_DATABASE, \
+from app.core.settings import MYSQL_USER, MYSQL_PASSWORD, MYSQL_HOST, MYSQL_PORT, MYSQL_DATABASE, \
     IS_CYPER, KEY, IV
 
 
