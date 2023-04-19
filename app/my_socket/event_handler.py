@@ -1,6 +1,6 @@
 import asyncio
 
-from app.my_socket.fastapi_consumer import socket_consumer, send_consumer_message
+from app.my_socket.socket_consumer import socket_consumer, send_consumer_message
 from app.core.log_manager import access_logger
 
 async def consume():
