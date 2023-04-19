@@ -17,10 +17,11 @@ login_namespace = f"/{LOGIN_NAMESPACE}"
 def login_socket_handler():
     @sio.event(namespace=login_namespace)
     async def connect(sid, environ):
-        access_logger.info(f"login connect")
+        access_logger.info(f"login connect - {sid}")
 
     @sio.event(namespace=login_namespace)
     async def disconnect(sid):
+        access_logger.info(f"login disconnect - {sid}")
         try:
             db = next(get_db())
             db.query(AccountAccess).filter(
