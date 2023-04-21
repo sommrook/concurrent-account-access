@@ -6,7 +6,7 @@ API_PORT = int(os.environ.get("API_PORT", 8000))
 API_WORKERS = int(os.environ.get("API_WORKERS", 3))
 
 # LOG
-LOG_PATH = "/Users/idasom/study/python/concurrentAccountAccess/logs"
+LOG_PATH = "/Users/idasom/study/python/concurrent-account-access/logs"
 
 # JWT KEY
 SECRET_KEY = "sksmdmdmsdlekzmfthadlq"
