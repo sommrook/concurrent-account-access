@@ -1,10 +1,8 @@
-import uvicorn
+import os
 from app.core.settings import API_HOST, API_PORT, API_WORKERS
 
-if __name__ == "__main__":
-    uvicorn.run(
-        "app.app:app",
-        host=API_HOST,
-        port=API_PORT,
-        workers=API_WORKERS
-    )
+os.system(f"gunicorn --bind {API_HOST}:{API_PORT} "
+          f"--workers {API_WORKERS} "
+          f"app.app:app "
+          f"--worker-class uvicorn.workers.UvicornWorker "
+          f"--access-logfile -")
