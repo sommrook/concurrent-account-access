@@ -16,7 +16,7 @@ class Queue(object, metaclass=Singleton):
     def __init__(self):
         _conf = {
             "bootstrap.servers": KAFKA_BOOTSTRAP,
-            "client.id": "42maru",
+            "client.id": "chloe",
             "message.timeout.ms": 1000000,
             "linger.ms": 100,
             "key.serializer": StringSerializer('utf_8'),
